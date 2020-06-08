@@ -1,0 +1,722 @@
+<!DOCTYPE html><html lang="en" dir="ltr"><head><meta charset="utf-8"><meta name="generator" content="ReSpec 25.9.2"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><style>.issue-label{text-transform:initial}.warning>p:first-child{margin-top:0}.warning{padding:.5em;border-left-width:.5em;border-left-style:solid}span.warning{padding:.1em .5em .15em}.issue.closed span.issue-number{text-decoration:line-through}.warning{border-color:#f11;border-width:.2em;border-style:solid;background:#fbe9e9}.warning-title:before{content:"⚠";font-size:1.3em;float:left;padding-right:.3em;margin-top:-.3em}li.task-list-item{list-style:none}input.task-list-item-checkbox{margin:0 .35em .25em -1.6em;vertical-align:middle}.issue a.respec-gh-label{padding:5px;margin:0 2px 0 2px;font-size:10px;text-transform:none;text-decoration:none;font-weight:700;border-radius:4px;position:relative;bottom:2px;border:none;display:inline-block}</style><style>pre.idl{padding:1em;position:relative}@media print{pre.idl{white-space:pre-wrap}}.idlHeader{display:block;width:150px;background:#8ccbf2;color:#fff;font-family:sans-serif;font-weight:700;margin:-1em 0 1em -1em;height:28px;line-height:28px}.idlHeader a.self-link{margin-left:.3cm;text-decoration:none;border-bottom:none}.idlID{font-weight:700;color:#005a9c}.idlType{color:#005a9c}.idlName{color:#ff4500}.idlName a{color:#ff4500;border-bottom:1px dotted #ff4500;text-decoration:none}a.idlEnumItem{color:#000;border-bottom:1px dotted #ccc;text-decoration:none}.idlSuperclass{font-style:italic;color:#005a9c}.idlDefaultValue,.idlParamName{font-style:italic}.extAttr{color:#666}.idlSectionComment{color:gray}.idlIncludes a{font-weight:700}.respec-button-copy-paste:focus{text-decoration:none;border-color:#51a7e8;outline:0;box-shadow:0 0 5px rgba(81,167,232,.5)}.respec-button-copy-paste.selected:focus,.respec-button-copy-paste:focus:hover{border-color:#51a7e8}.respec-button-copy-paste.zeroclipboard-is-active,.respec-button-copy-paste.zeroclipboard-is-hover,.respec-button-copy-paste:active,.respec-button-copy-paste:hover{text-decoration:none;background-color:#ddd;background-image:linear-gradient(#eee,#ddd);border-color:#ccc}.respec-button-copy-paste.selected,.respec-button-copy-paste.zeroclipboard-is-active,.respec-button-copy-paste:active{background-color:#dcdcdc;background-image:none;border-color:#b5b5b5;box-shadow:inset 0 2px 4px rgba(0,0,0,.15)}.respec-button-copy-paste.selected:hover{background-color:#cfcfcf}.respec-button-copy-paste.disabled,.respec-button-copy-paste.disabled:hover,.respec-button-copy-paste:disabled,.respec-button-copy-paste:disabled:hover{color:rgba(102,102,102,.5);cursor:default;background-color:rgba(229,229,229,.5);background-image:none;border-color:rgba(197,197,197,.5);box-shadow:none}@media print{.respec-button-copy-paste{visibility:hidden}}</style><style>dfn{cursor:pointer}.dfn-panel{position:absolute;z-index:35;min-width:300px;max-width:500px;padding:.5em .75em;margin-top:.6em;font:small Helvetica Neue,sans-serif,Droid Sans Fallback;background:#fff;color:#000;box-shadow:0 1em 3em -.4em rgba(0,0,0,.3),0 0 1px 1px rgba(0,0,0,.05);border-radius:2px}.dfn-panel:not(.docked)>.caret{position:absolute;top:-9px}.dfn-panel:not(.docked)>.caret::after,.dfn-panel:not(.docked)>.caret::before{content:"";position:absolute;border:10px solid transparent;border-top:0;border-bottom:10px solid #fff;top:0}.dfn-panel:not(.docked)>.caret::before{border-bottom:9px solid #a2a9b1}.dfn-panel *{margin:0}.dfn-panel b{display:block;color:#000;margin-top:.25em}.dfn-panel ul a[href]{color:#333}.dfn-panel a.self-link{font-weight:700}.dfn-panel .dfn-exported{float:right;padding:.1em;border-radius:.2em;text-align:center;white-space:nowrap;font-size:90%;background:#d1edfd;color:#040b1c;box-shadow:0 0 0 .125em #1ca5f940}.dfn-panel a:not(:hover){text-decoration:none!important;border-bottom:none!important}.dfn-panel a[href]:hover{border-bottom-width:1px}.dfn-panel ul{padding:0}.dfn-panel li{margin-left:1em}.dfn-panel.docked{position:fixed;left:.5em;top:unset;bottom:2em;margin:0 auto;max-width:calc(100vw - .75em * 2 - .5em - .2em * 2);max-height:30vh;overflow:auto}</style>
+    
+    <title>Image Resource</title>
+    <style id="respec-mainstyle">@keyframes pop{0%{transform:scale(1,1)}25%{transform:scale(1.25,1.25);opacity:.75}100%{transform:scale(1,1)}}.hljs{background:0 0!important}a abbr,h1 abbr,h2 abbr,h3 abbr,h4 abbr,h5 abbr,h6 abbr{border:none}dfn{font-weight:700}a.internalDFN{color:inherit;border-bottom:1px solid #99c;text-decoration:none}a.externalDFN{color:inherit;border-bottom:1px dotted #ccc;text-decoration:none}a.bibref{text-decoration:none}.respec-offending-element:target{animation:pop .25s ease-in-out 0s 1}.respec-offending-element,a[href].respec-offending-element{text-decoration:red wavy underline}@supports not (text-decoration:red wavy underline){.respec-offending-element:not(pre){display:inline-block}.respec-offending-element{background:url(data:image/gif;base64,R0lGODdhBAADAPEAANv///8AAP///wAAACwAAAAABAADAEACBZQjmIAFADs=) bottom repeat-x}}#references :target{background:#eaf3ff;animation:pop .4s ease-in-out 0s 1}cite .bibref{font-style:normal}code{color:#c63501}th code{color:inherit}a[href].orcid{padding-left:4px;padding-right:4px}a[href].orcid>svg{margin-bottom:-2px}.toc a,.tof a{text-decoration:none}a .figno,a .secno{color:#000}ol.tof,ul.tof{list-style:none outside none}.caption{margin-top:.5em;font-style:italic}table.simple{border-spacing:0;border-collapse:collapse;border-bottom:3px solid #005a9c}.simple th{background:#005a9c;color:#fff;padding:3px 5px;text-align:left}.simple th a{color:#fff;padding:3px 5px;text-align:left}.simple th[scope=row]{background:inherit;color:inherit;border-top:1px solid #ddd}.simple td{padding:3px 10px;border-top:1px solid #ddd}.simple tr:nth-child(even){background:#f0f6ff}.section dd>p:first-child{margin-top:0}.section dd>p:last-child{margin-bottom:0}.section dd{margin-bottom:1em}.section dl.attrs dd,.section dl.eldef dd{margin-bottom:0}#issue-summary>ul,.respec-dfn-list{column-count:2}#issue-summary li,.respec-dfn-list li{list-style:none}details.respec-tests-details{margin-left:1em;display:inline-block;vertical-align:top}details.respec-tests-details>*{padding-right:2em}details.respec-tests-details[open]{z-index:999999;position:absolute;border:thin solid #cad3e2;border-radius:.3em;background-color:#fff;padding-bottom:.5em}details.respec-tests-details[open]>summary{border-bottom:thin solid #cad3e2;padding-left:1em;margin-bottom:1em;line-height:2em}details.respec-tests-details>ul{width:100%;margin-top:-.3em}details.respec-tests-details>li{padding-left:1em}a[href].self-link:hover{opacity:1;text-decoration:none;background-color:transparent}h2,h3,h4,h5,h6{position:relative}aside.example .marker>a.self-link{color:inherit}h2>a.self-link,h3>a.self-link,h4>a.self-link,h5>a.self-link,h6>a.self-link{border:none;color:inherit;font-size:83%;height:2em;left:-1.6em;opacity:.5;position:absolute;text-align:center;text-decoration:none;top:0;transition:opacity .2s;width:2em}h2>a.self-link::before,h3>a.self-link::before,h4>a.self-link::before,h5>a.self-link::before,h6>a.self-link::before{content:"§";display:block}@media (max-width:767px){dd{margin-left:0}h2>a.self-link,h3>a.self-link,h4>a.self-link,h5>a.self-link,h6>a.self-link{left:auto;top:auto}}@media print{.removeOnSave{display:none}}</style>
+    
+  <meta name="description" content="This document defines the concept of an &quot;image resource&quot; and a
+        corresponding WebIDL ImageResource dictionary. Web APIs can use the
+        ImageResource dictionary to represent an image resource in contexts
+        where an HTMLImageElement is not suitable or available (e.g., in a
+        Worker)."><link rel="canonical" href="https://www.w3.org/TR/image-resource/"><style>.hljs{display:block;overflow-x:auto;padding:.5em;color:#383a42;background:#fafafa}.hljs-comment,.hljs-quote{color:#717277;font-style:italic}.hljs-doctag,.hljs-formula,.hljs-keyword{color:#a626a4}.hljs-deletion,.hljs-name,.hljs-section,.hljs-selector-tag,.hljs-subst{color:#ca4706;font-weight:700}.hljs-literal{color:#0b76c5}.hljs-addition,.hljs-attribute,.hljs-meta-string,.hljs-regexp,.hljs-string{color:#42803c}.hljs-built_in,.hljs-class .hljs-title{color:#9a6a01}.hljs-attr,.hljs-number,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-pseudo,.hljs-template-variable,.hljs-type,.hljs-variable{color:#986801}.hljs-bullet,.hljs-link,.hljs-meta,.hljs-selector-id,.hljs-symbol,.hljs-title{color:#336ae3}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}.hljs-link{text-decoration:underline}</style><style>var{position:relative;cursor:pointer}var[data-type]::after,var[data-type]::before{position:absolute;left:50%;top:-6px;opacity:0;transition:opacity .4s;pointer-events:none}var[data-type]::before{content:"";transform:translateX(-50%);border-width:4px 6px 0 6px;border-style:solid;border-color:transparent;border-top-color:#000}var[data-type]::after{content:attr(data-type);transform:translateX(-50%) translateY(-100%);background:#000;text-align:center;font-family:"Dank Mono","Fira Code",monospace;font-style:normal;padding:6px;border-radius:3px;color:#daca88;text-indent:0;font-weight:400}var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}</style><script id="initialUserConfig" type="application/json">{
+  "mdn": true,
+  "specStatus": "ED",
+  "editors": [
+    {
+      "name": "Aaron Gustafson",
+      "company": "Microsoft Corporation",
+      "companyURL": "https://microsoft.com/",
+      "w3cid": 43672
+    },
+    {
+      "name": "Rayan Kanso",
+      "company": "Google Inc.",
+      "companyURL": "https://google.com/",
+      "w3cid": 115452
+    },
+    {
+      "name": "Marcos Càceres",
+      "company": "Mozilla Corporation",
+      "companyURL": "https://mozilla.org/",
+      "w3cid": 39125
+    }
+  ],
+  "wg": "Web Applications Working Group",
+  "wgURI": "https://www.w3.org/2019/webapps/",
+  "wgPatentURI": "https://www.w3.org/2004/01/pp-impl/114929/status",
+  "github": {
+    "repoURL": "w3c/image-resource/",
+    "branch": "master"
+  },
+  "xref": "web-platform",
+  "publishISODate": "2020-06-08T00:00:00.000Z",
+  "generatedSubtitle": "Editor's Draft 08 June 2020"
+}</script><link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED"></head>
+  <body data-cite="WebIDL ENCODING MIMESNIFF HTML INFRA URL WEBIDL DOM FETCH" class="h-entry"><div class="head">
+    <a class="logo" href="https://www.w3.org/"><img alt="W3C" width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C"></a> <h1 id="title" class="title">
+      Image Resource
+    </h1>
+    
+    <h2>
+      W3C Editor's Draft
+      <time class="dt-published" datetime="2020-06-08">08 June 2020</time>
+    </h2>
+    <dl>
+      <dt>This version:</dt><dd>
+              <a class="u-url" href="https://w3c.github.io/image-resource/">https://w3c.github.io/image-resource/</a>
+            </dd><dt>Latest published version:</dt><dd>
+              <a href="https://www.w3.org/TR/image-resource/">https://www.w3.org/TR/image-resource/</a>
+            </dd>
+      <dt>Latest editor's draft:</dt><dd><a href="https://w3c.github.io/image-resource/">https://w3c.github.io/image-resource/</a></dd>
+      
+      
+      
+      
+      
+      <dt>Editors:</dt>
+      <dd class="p-author h-card vcard" data-editor-id="43672"><span class="p-name fn">Aaron Gustafson</span>
+            (<a class="p-org org h-org h-card" href="https://microsoft.com/">Microsoft Corporation</a>)
+          </dd><dd class="p-author h-card vcard" data-editor-id="115452"><span class="p-name fn">Rayan Kanso</span>
+            (<a class="p-org org h-org h-card" href="https://google.com/">Google Inc.</a>)
+          </dd><dd class="p-author h-card vcard" data-editor-id="39125"><span class="p-name fn">Marcos Càceres</span>
+            (<a class="p-org org h-org h-card" href="https://mozilla.org/">Mozilla Corporation</a>)
+          </dd>
+      
+      
+      <dt>Participate:</dt><dd>
+    <a href="https://github.com/w3c/image-resource/">GitHub w3c/image-resource</a>
+  </dd><dd>
+    <a href="https://github.com/w3c/image-resource/issues/">File a bug</a>
+  </dd><dd>
+    <a href="https://github.com/w3c/image-resource/commits/master">Commit history</a>
+  </dd><dd>
+    <a href="https://github.com/w3c/image-resource/pulls/">Pull requests</a>
+  </dd>
+    </dl>
+    
+    
+    
+    <p class="copyright">
+    <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>
+    ©
+    2020
+    
+    <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>,
+    <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>,
+    <a href="https://ev.buaa.edu.cn/">Beihang</a>). 
+    W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+    <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a rel="license" href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document">permissive document license</a> rules
+    apply.
+  </p>
+    <hr title="Separator for header">
+  </div>
+    
+    <section id="abstract" class="introductory"><h2>Abstract</h2>
+      <p>
+        This document defines the concept of an "image resource" and a
+        corresponding WebIDL <a data-link-type="idl" href="#dom-imageresource" class="internalDFN" id="ref-for-dom-imageresource-1"><code><code>ImageResource</code></code></a> dictionary. Web APIs can use the
+        <a data-link-type="idl" href="#dom-imageresource" class="internalDFN" id="ref-for-dom-imageresource-2"><code><code>ImageResource</code></code></a> dictionary to represent an image resource in contexts
+        where an <code>HTMLImageElement</code> is not suitable or available (e.g., in a
+        Worker).
+      </p>
+    </section>
+    <section id="sotd" class="introductory"><h2>Status of This Document</h2><p><em>This section describes the status of this
+      document at the time of its publication. Other documents may supersede
+      this document. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision
+      of this technical report can be found in the
+      <a href="https://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports index</a> at
+      https://www.w3.org/TR/.</em></p>
+      <p>
+        <strong>This specification is not stable.</strong> Implementors who are
+        not taking part in the discussions will find the specification changing
+        out from under them in incompatible ways.
+      </p>
+    <p>
+    This document was published by the <a href="https://www.w3.org/2019/webapps/">Web Applications Working Group</a> as an
+    Editor's Draft.
+    
+  </p><p>
+    <a href="https://github.com/w3c/image-resource/issues/">GitHub Issues</a> are preferred for
+          discussion of this specification.
+        
+    
+  </p><p>
+    Publication as an Editor's Draft does not imply endorsement by the <abbr title="World Wide Web Consortium">W3C</abbr>
+    Membership. This is a draft document and may be updated, replaced or
+    obsoleted by other documents at any time. It is inappropriate to cite this
+    document as other than work in progress.
+  </p><p>
+    
+        This document was produced by a group
+        operating under the
+        <a href="https://www.w3.org/Consortium/Patent-Policy/"><abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
+       
+    
+                <abbr title="World Wide Web Consortium">W3C</abbr> maintains a
+                <a rel="disclosure" href="https://www.w3.org/2004/01/pp-impl/114929/status">public list of any patent disclosures</a>
+          made in connection with the deliverables of
+          the group; that page also includes
+          instructions for disclosing a patent. An individual who has actual
+          knowledge of a patent which the individual believes contains
+          <a href="https://www.w3.org/Consortium/Patent-Policy/#def-essential">Essential Claim(s)</a>
+          must disclose the information in accordance with
+          <a href="https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure">section 6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
+        
+    
+  </p><p>
+                  This document is governed by the
+                  <a id="w3c_process_revision" href="https://www.w3.org/2019/Process-20190301/">1 March 2019 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
+                </p></section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#introduction"><bdi class="secno">1. </bdi>
+        Introduction
+      </a></li><li class="tocline"><a class="tocxref" href="#privacy-and-security-considerations"><bdi class="secno">2. </bdi>
+        Privacy and security considerations
+      </a></li><li class="tocline"><a class="tocxref" href="#image-resource"><bdi class="secno">3. </bdi>
+        Image resource
+      </a></li><li class="tocline"><a class="tocxref" href="#imageresource-dictionary"><bdi class="secno">4. </bdi>
+        <span data-export="" data-dfn-type="dictionary" data-idl="dictionary" data-title="ImageResource" data-dfn-for=""><code>ImageResource</code></span> dictionary
+      </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#src-member"><bdi class="secno">4.1 </bdi>
+          <span data-export="" data-dfn-type="dict-member" data-idl="field" data-title="src" data-dfn-for="ImageResource" data-type="USVString"><code>src</code></span> member
+        </a></li><li class="tocline"><a class="tocxref" href="#sizes-member"><bdi class="secno">4.2 </bdi>
+          <span data-export="" data-dfn-type="dict-member" data-idl="field" data-title="sizes" data-dfn-for="ImageResource" data-type="DOMString"><code>sizes</code></span> member
+        </a></li><li class="tocline"><a class="tocxref" href="#type-member"><bdi class="secno">4.3 </bdi>
+          <span data-export="" data-dfn-type="dict-member" data-idl="field" data-title="type" data-dfn-for="ImageResource" data-type="DOMString"><code>type</code></span> member
+        </a></li></ol></li><li class="tocline"><a class="tocxref" href="#processing-an-imageresource-from-an-api"><bdi class="secno">5. </bdi>
+        Processing an <code>ImageResource</code> from an API
+      </a></li><li class="tocline"><a class="tocxref" href="#processing-an-image-resource-from-json"><bdi class="secno">6. </bdi>
+        Processing an image resource from JSON
+      </a></li><li class="tocline"><a class="tocxref" href="#fetching-an-image-resource"><bdi class="secno">7. </bdi>
+        Fetching an image resource
+      </a></li><li class="tocline"><a class="tocxref" href="#conformance"><bdi class="secno">8. </bdi>Conformance</a></li><li class="tocline"><a class="tocxref" href="#references"><bdi class="secno">A. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#normative-references"><bdi class="secno">A.1 </bdi>Normative references</a></li></ol></li></ol></nav>
+    <section id="introduction">
+      <h2 id="x1-introduction"><bdi class="secno">1. </bdi>
+        Introduction
+      <a class="self-link" aria-label="§" href="#introduction"></a></h2>
+      <p>
+        Web applications often accept developer-provided image resources to be
+        displayed outside of a HTML document (e.g., in the OS, in the browser
+        UI, etc.). This specification defines a WebIDL dictionary that
+        describes an image, and where that image resource can be fetched from.
+        The user agent can then use this extra information to choose an image
+        that is best suited to display on the end-user's device or most closely
+        matches the end-user's preferences or environment.
+      </p>
+    </section>
+    <section id="privacy-and-security-considerations">
+      <h2 id="x2-privacy-and-security-considerations"><bdi class="secno">2. </bdi>
+        Privacy and security considerations
+      <a class="self-link" aria-label="§" href="#privacy-and-security-considerations"></a></h2>
+      <p>
+        <a data-link-type="dfn" href="#dfn-fetching-an-image-resource" class="internalDFN" id="ref-for-dfn-fetching-an-image-resource-1">Fetching an image resource</a> can reveal the user's IP address. It is
+        <em class="rfc2119">RECOMMENDED</em> that user agents fetch the chosen <a data-link-type="dfn" href="#dfn-image-resource" class="internalDFN" id="ref-for-dfn-image-resource-1">image resources</a> when
+        provided by the developer, and store them for re-use if needed. This
+        limits tracking the user's location over time.
+      </p>
+    </section>
+    <section id="image-resource">
+      <h2 id="x3-image-resource"><bdi class="secno">3. </bdi>
+        Image resource
+      <a class="self-link" aria-label="§" href="#image-resource"></a></h2>
+      <p>
+        An <dfn data-plurals="image resources" id="dfn-image-resource">image resource</dfn> consists of:
+      </p>
+      <dl>
+        <dt>
+          <dfn data-dfn-for="image resource" id="dfn-src">src</dfn>
+        </dt>
+        <dd>
+          A <a data-link-type="dfn" data-type="dfn" href="https://url.spec.whatwg.org/#concept-url">URL</a> from where to obtain the image data.
+        </dd>
+        <dt>
+          <dfn data-dfn-for="image resource" id="dfn-sizes">sizes</dfn>
+        </dt>
+        <dd>
+          A <a data-link-type="dfn" data-type="dfn" href="https://infra.spec.whatwg.org/#string">string</a> representing the sizes of the image, expressed using the
+          same syntax as <code><a data-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#the-link-element">link</a></code>'s <code><a data-type="element-attr" href="https://html.spec.whatwg.org/multipage/semantics.html#attr-link-sizes">sizes</a></code> attribute.
+        </dd>
+        <dt>
+          <dfn data-dfn-for="image resource" id="dfn-type">type</dfn>
+        </dt>
+        <dd>
+          An <a data-link-type="dfn" data-type="dfn" href="https://mimesniff.spec.whatwg.org/#image-mime-type">image MIME type</a>.
+        </dd>
+      </dl>
+      <p>
+        In an API, this is represented as an <a data-link-type="idl" href="#dom-imageresource" class="internalDFN" id="ref-for-dom-imageresource-3"><code><code>ImageResource</code></code></a> dictionary.
+      </p>
+    </section>
+    <section data-dfn-for="ImageResource" id="imageresource-dictionary">
+      <h2 id="x4-imageresource-dictionary"><bdi class="secno">4. </bdi>
+        <dfn data-export="" data-dfn-type="dictionary" id="dom-imageresource" data-idl="dictionary" data-title="ImageResource" data-dfn-for=""><code>ImageResource</code></dfn> dictionary
+      <a class="self-link" aria-label="§" href="#imageresource-dictionary"></a></h2>
+      <pre class="idl def" id="webidl-602551139"><span class="idlHeader"><a class="self-link" href="#webidl-602551139">WebIDL</a></span><span data-idl="" class="idlDictionary" id="idl-def-imageresource" data-title="ImageResource">dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dom-imageresource" id="ref-for-dom-imageresource-4"><code>ImageResource</code></a> {<span data-idl="" class="idlMember" id="idl-def-imageresource-src" data-title="src" data-dfn-for="ImageResource">
+  required<span class="idlType"> <a data-type="interface" href="https://heycam.github.io/webidl/#idl-USVString">USVString</a></span> <a class="internalDFN idlName" data-link-type="dict-member" href="#dom-imageresource-src" id="ref-for-dom-imageresource-src-1"><code>src</code></a>;</span><span data-idl="" class="idlMember" id="idl-def-imageresource-sizes" data-title="sizes" data-dfn-for="ImageResource"><span class="idlType">
+  <a data-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString">DOMString</a></span> <a class="internalDFN idlName" data-link-type="dict-member" href="#dom-imageresource-sizes" id="ref-for-dom-imageresource-sizes-1"><code>sizes</code></a>;</span><span data-idl="" class="idlMember" id="idl-def-imageresource-type" data-title="type" data-dfn-for="ImageResource"><span class="idlType">
+  <a data-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString">DOMString</a></span> <a class="internalDFN idlName" data-link-type="dict-member" href="#dom-imageresource-type" id="ref-for-dom-imageresource-type-1"><code>type</code></a>;</span>
+};</span></pre>
+      <section id="src-member">
+        <h3 id="x4-1-src-member"><bdi class="secno">4.1 </bdi>
+          <dfn data-export="" data-dfn-type="dict-member" id="dom-imageresource-src" data-idl="field" data-title="src" data-dfn-for="ImageResource" data-type="USVString"><code>src</code></dfn> member
+        <a class="self-link" aria-label="§" href="#src-member"></a></h3>
+        <p>
+          The <a data-link-type="idl" href="#dom-imageresource-src" class="internalDFN" id="ref-for-dom-imageresource-src-2"><code><code>src</code></code></a> of an <a data-link-type="idl" href="#dom-imageresource" class="internalDFN" id="ref-for-dom-imageresource-5"><code><code>ImageResource</code></code></a> is a <a data-link-type="dfn" data-type="dfn" href="https://url.spec.whatwg.org/#concept-url">URL</a> from
+          which a user agent can <a data-link-type="dfn" data-type="dfn" href="https://fetch.spec.whatwg.org/#concept-fetch">fetch</a> image data.
+        </p>
+      </section>
+      <section id="sizes-member">
+        <h3 id="x4-2-sizes-member"><bdi class="secno">4.2 </bdi>
+          <dfn data-export="" data-dfn-type="dict-member" id="dom-imageresource-sizes" data-idl="field" data-title="sizes" data-dfn-for="ImageResource" data-type="DOMString"><code>sizes</code></dfn> member
+        <a class="self-link" aria-label="§" href="#sizes-member"></a></h3>
+        <p>
+          The <a data-link-type="idl" href="#dom-imageresource-sizes" class="internalDFN" id="ref-for-dom-imageresource-sizes-2"><code><code>sizes</code></code></a> member is equivalent to a <code><a data-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#the-link-element">link</a></code>
+          element's <code><a data-type="element-attr" href="https://html.spec.whatwg.org/multipage/semantics.html#attr-link-sizes">sizes</a></code> attribute, and is processed in the same
+          manner.
+        </p>
+        <p>
+          When multiple <a data-link-type="idl" href="#dom-imageresource" class="internalDFN" id="ref-for-dom-imageresource-6"><code><code>ImageResource</code></code></a> dictionaries are available, a user
+          agent <em class="rfc2119">MAY</em> use the <a data-link-type="idl" href="#dom-imageresource-sizes" class="internalDFN" id="ref-for-dom-imageresource-sizes-3"><code><code>sizes</code></code></a> value to decide which image
+          is most suitable for a display context (and ignore any that are
+          inappropriate).
+        </p>
+        <div class="note" role="note" id="issue-container-generatedID"><div role="heading" class="note-title marker" id="h-note" aria-level="4"><span>Note</span></div><aside class="">
+          When multiple <a data-link-type="idl" href="#dom-imageresource" class="internalDFN" id="ref-for-dom-imageresource-7"><code><code>ImageResource</code></code></a> dictionaries are being used by an API
+          (e.g., in a WebIDL <a data-link-type="dfn" data-type="dfn" href="https://heycam.github.io/webidl/#idl-sequence">sequence</a>), the specifications should indicate
+          if the order in which the dictionaries are passed is significant. As
+          a general rule, order is significant and "first match wins".
+        </aside></div>
+        <div class="example">
+          The <a data-link-type="idl" href="#dom-imageresource-sizes" class="internalDFN" id="ref-for-dom-imageresource-sizes-4"><code><code>sizes</code></code></a> member allows for multiple
+          space-separated size values in order to accommodate image formats
+          (such as ICO) that can act as a container for multiple images of
+          varying dimensions.
+          <pre aria-busy="false"><code class="hljs js"><span class="hljs-keyword">const</span> image = {
+  <span class="hljs-attr">src</span>: <span class="hljs-string">"path/to/image.ico"</span>,
+  <span class="hljs-attr">sizes</span>: <span class="hljs-string">"16x16 32x32 64x64"</span>,
+  <span class="hljs-attr">type</span>: <span class="hljs-string">"image/vnd.microsoft.icon"</span>,
+};
+some.api.doSomething(image);</code></pre>
+        </div>
+      </section>
+      <section id="type-member">
+        <h3 id="x4-3-type-member"><bdi class="secno">4.3 </bdi>
+          <dfn data-export="" data-dfn-type="dict-member" id="dom-imageresource-type" data-idl="field" data-title="type" data-dfn-for="ImageResource" data-type="DOMString"><code>type</code></dfn> member
+        <a class="self-link" aria-label="§" href="#type-member"></a></h3>
+        <p>
+          The <a data-link-type="idl" href="#dom-imageresource-type" class="internalDFN" id="ref-for-dom-imageresource-type-2"><code><code>type</code></code></a> member represents an <a data-link-type="dfn" data-type="dfn" href="https://mimesniff.spec.whatwg.org/#image-mime-type">image MIME Type</a>
+          for the image resource. A user agent <em class="rfc2119">MAY</em> ignore media types it does
+          not support.
+        </p>
+        <p>
+          There is no default <a data-link-type="dfn" data-type="dfn" href="https://mimesniff.spec.whatwg.org/#mime-type">MIME type</a> for an <a data-link-type="idl" href="#dom-imageresource" class="internalDFN" id="ref-for-dom-imageresource-8"><code><code>ImageResource</code></code></a>. The
+          <a data-link-type="idl" href="#dom-imageresource-type" class="internalDFN" id="ref-for-dom-imageresource-type-3"><code><code>type</code></code></a> is purely advisory. User agents <em class="rfc2119">MUST</em> use the
+          <a data-link-type="dfn" data-type="dfn" href="https://mimesniff.spec.whatwg.org/#rules-for-sniffing-images-specifically">rules for sniffing images specifically</a> to determine the
+          <a data-link-type="dfn" data-type="dfn" href="https://mimesniff.spec.whatwg.org/#computed-mime-type">computed MIME type</a> of an <a data-link-type="dfn" href="#dfn-image-resource" class="internalDFN" id="ref-for-dfn-image-resource-2">image resource</a>.
+        </p>
+      </section>
+    </section>
+    <section id="processing-an-imageresource-from-an-api">
+      <h2 id="x5-processing-an-imageresource-from-an-api"><bdi class="secno">5. </bdi>
+        Processing an <code>ImageResource</code> from an API
+      <a class="self-link" aria-label="§" href="#processing-an-imageresource-from-an-api"></a></h2>
+      <p>
+        The steps to <dfn data-export="" id="dfn-process-an-imageresource-from-an-api">process an <code>ImageResource</code> from an
+        API</dfn> are given by the following algorithm. The algorithm takes an
+        <a data-link-type="idl" href="#dom-imageresource" class="internalDFN" id="ref-for-dom-imageresource-9"><code><code>ImageResource</code></code></a> <var data-type="ImageResource">input</var>. It returns an <a data-link-type="dfn" href="#dfn-image-resource" class="internalDFN" id="ref-for-dfn-image-resource-3">image
+        resource</a>.
+      </p>
+      <ol>
+        <li>Let <var>base URL</var> be the <a data-link-type="dfn" data-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object">relevant settings object</a>’s <a data-link-type="dfn" data-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#api-base-url">api base url</a> from where this dictionary is being
+        used.
+        </li>
+        <li>Let <var>image</var> be a new <a data-link-type="dfn" href="#dfn-image-resource" class="internalDFN" id="ref-for-dfn-image-resource-4">image resource</a>.
+        </li>
+        <li>Set <var>image</var>'s <a data-link-type="dfn" href="#dfn-src" class="internalDFN" id="ref-for-dfn-src-1">src</a> to the result of <a data-link-type="dfn" data-lt="URL
+        parser" data-type="dfn" href="https://url.spec.whatwg.org/#concept-url-parser">URL parsing</a> <var data-type="ImageResource">input</var>.<a data-link-type="idl" href="#dom-imageresource-src" class="internalDFN" id="ref-for-dom-imageresource-src-3"><code><code>src</code></code></a> and <var>base URL</var>. If
+        parsing the URL fails, throw a <a data-link-type="idl" data-type="exception" href="https://heycam.github.io/webidl/#exceptiondef-typeerror"><code>TypeError</code></a>.
+        </li>
+        <li>If <var data-type="ImageResource">input</var>'s <a data-link-type="idl" href="#dom-imageresource-sizes" class="internalDFN" id="ref-for-dom-imageresource-sizes-5"><code><code>sizes</code></code></a> member is present:
+          <ol>
+            <li>Set <var>image</var>'s <a data-link-type="dfn" href="#dfn-sizes" class="internalDFN" id="ref-for-dfn-sizes-1">sizes</a> to the result of <a data-link-type="dfn" data-lt="link
+            type &quot;icon&quot;" data-type="dfn" href="https://html.spec.whatwg.org/multipage/links.html#rel-icon">parsing</a> <var data-type="ImageResource">input</var>.<a data-link-type="idl" href="#dom-imageresource-sizes" class="internalDFN" id="ref-for-dom-imageresource-sizes-6"><code><code>sizes</code></code></a> as if it was
+            a <code><a data-type="element-attr" href="https://html.spec.whatwg.org/multipage/semantics.html#attr-link-sizes">sizes</a></code> attribute of a <code><a data-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#the-link-element">link</a></code> element whose <code><a data-type="element-attr" href="https://html.spec.whatwg.org/multipage/semantics.html#attr-link-rel">rel</a></code>
+            attribute contains the token <code>icon</code>. If parsing fails, throw a
+            <a data-link-type="idl" data-type="exception" href="https://heycam.github.io/webidl/#exceptiondef-typeerror"><code>TypeError</code></a>.
+            </li>
+          </ol>
+        </li>
+        <li>If <var data-type="ImageResource">input</var>'s <a data-link-type="idl" href="#dom-imageresource-type" class="internalDFN" id="ref-for-dom-imageresource-type-4"><code><code>type</code></code></a> member is present and not the
+        empty string:
+          <ol>
+            <li>If <a data-link-type="idl" href="#dom-imageresource-type" class="internalDFN" id="ref-for-dom-imageresource-type-5"><code><code>type</code></code></a> is not an <a data-link-type="dfn" data-type="dfn" href="https://mimesniff.spec.whatwg.org/#image-mime-type">image MIME Type</a>, throw
+            a <a data-link-type="idl" data-type="exception" href="https://heycam.github.io/webidl/#exceptiondef-typeerror"><code>TypeError</code></a>.
+            </li>
+            <li>Set <var>image</var>'s <a data-link-type="dfn" href="#dfn-type" class="internalDFN" id="ref-for-dfn-type-1">type</a> to
+            <var data-type="ImageResource">input</var>.<a data-link-type="idl" href="#dom-imageresource-type" class="internalDFN" id="ref-for-dom-imageresource-type-6"><code><code>type</code></code></a>.
+            </li>
+          </ol>
+        </li>
+        <li>Return <var>image</var>.
+        </li>
+      </ol>
+    </section>
+    <section id="processing-an-image-resource-from-json">
+      <h2 id="x6-processing-an-image-resource-from-json"><bdi class="secno">6. </bdi>
+        Processing an image resource from JSON
+      <a class="self-link" aria-label="§" href="#processing-an-image-resource-from-json"></a></h2>
+      <p>
+        The steps to <dfn data-export="" id="dfn-process-an-image-resource-from-json">process an image resource from
+        JSON</dfn> are given by the following algorithm. The algorithm takes a
+        JSON Object <var data-type="Object">input</var> and a <a data-link-type="dfn" data-type="dfn" href="https://url.spec.whatwg.org/#concept-url">URL</a> <var>base URL</var>. It returns an
+        <a data-link-type="dfn" href="#dfn-image-resource" class="internalDFN" id="ref-for-dfn-image-resource-5">image resource</a>.
+      </p>
+      <ol>
+        <li>If <var data-type="Object">input</var> is missing "src" property, return failure.
+        </li>
+        <li>Let <var>image</var> be a new <a data-link-type="dfn" href="#dfn-image-resource" class="internalDFN" id="ref-for-dfn-image-resource-6">image resource</a>.
+        </li>
+        <li>Set <var>image</var>'s <a data-link-type="dfn" href="#dfn-src" class="internalDFN" id="ref-for-dfn-src-2">src</a> to the result of <a data-link-type="dfn" data-lt="URL
+        parser" data-type="dfn" href="https://url.spec.whatwg.org/#concept-url-parser">URL parsing</a> <var>object</var>'s <a data-link-type="dfn" href="#dfn-src" class="internalDFN" id="ref-for-dfn-src-3">src</a> property and
+        <var>base URL</var>. If parsing the URL fails, return failure.
+        </li>
+        <li>If <var data-type="Object">input</var> has a "sizes" property and its type is a <a data-link-type="dfn" data-type="dfn" href="https://infra.spec.whatwg.org/#string">string</a> of
+        length greater than zero:
+          <ol>
+            <li>Set <var>image</var>'s <a data-link-type="dfn" href="#dfn-sizes" class="internalDFN" id="ref-for-dfn-sizes-2">sizes</a> to the result of <a data-link-type="dfn" data-lt="link
+            type &quot;icon&quot;" data-type="dfn" href="https://html.spec.whatwg.org/multipage/links.html#rel-icon">parsing</a> <var data-type="Object">input</var>.<a data-link-type="idl" href="#dom-imageresource-sizes" class="internalDFN" id="ref-for-dom-imageresource-sizes-7"><code><code>sizes</code></code></a> as if it was
+            a <code><a data-type="element-attr" href="https://html.spec.whatwg.org/multipage/semantics.html#attr-link-sizes">sizes</a></code> attribute of a <code><a data-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#the-link-element">link</a></code> element whose <code><a data-type="element-attr" href="https://html.spec.whatwg.org/multipage/semantics.html#attr-link-rel">rel</a></code>
+            attribute contains the token <code>icon</code>. If parsing fails, return
+            failure.
+            </li>
+          </ol>
+        </li>
+        <li>If <var data-type="Object">input</var> has a "type" property that is a <a data-link-type="dfn" data-type="dfn" href="https://infra.spec.whatwg.org/#string">string</a> of length
+        greater than zero:
+          <ol>
+            <li>If <var data-type="Object">input</var>'s "type" property value is not a <a data-link-type="dfn" data-type="dfn" href="https://mimesniff.spec.whatwg.org/#valid-mime-type">valid MIME type
+            string</a>, return failure.
+            </li>
+            <li>Set <var>image</var>'s <a data-link-type="dfn" href="#dfn-type" class="internalDFN" id="ref-for-dfn-type-2">type</a> to the value of <var data-type="Object">input</var>'s
+            "type" property.
+            </li>
+          </ol>
+        </li>
+        <li>Return <var>image</var>.
+        </li>
+      </ol>
+    </section>
+    <section id="fetching-an-image-resource">
+      <h2 id="x7-fetching-an-image-resource"><bdi class="secno">7. </bdi>
+        Fetching an image resource
+      <a class="self-link" aria-label="§" href="#fetching-an-image-resource"></a></h2>
+      <p>
+        The steps for <dfn data-export="" id="dfn-fetching-an-image-resource">fetching an image resource</dfn> are
+        given by the following algorithm. The algorithm takes an <a data-link-type="dfn" href="#dfn-image-resource" class="internalDFN" id="ref-for-dfn-image-resource-7">image
+        resource</a> <var>image</var>, and an optional <a data-link-type="dfn" data-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request">Request</a> <var>request</var>. It returns a
+        <a data-link-type="dfn" data-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response">Response</a>.
+      </p>
+      <ol>
+        <li>If <var>request</var> is <code>undefined</code>:
+          <ol>
+            <li>Set <var>request</var> to a new <a data-link-type="dfn" data-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request">Request</a>.
+            </li>
+            <li>Set <a data-link-type="dfn" data-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-url">URL</a> to <var>image</var>'s <a data-link-type="dfn" href="#dfn-src" class="internalDFN" id="ref-for-dfn-src-4">src</a>.
+            </li>
+            <li>Set <a data-link-type="dfn" data-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-destination">Destination</a> to "image".
+            </li>
+            <li>Set <a data-link-type="dfn" data-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client">Client</a> to the <a data-link-type="dfn" data-type="dfn" href="https://dom.spec.whatwg.org/#context-object">context object</a>'s <a data-link-type="dfn" data-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object">relevant settings object</a>.
+            </li>
+          </ol>
+        </li>
+        <li>If <var>request</var>'s <a data-link-type="dfn" data-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client">Client</a> is null, throw a <a data-link-type="idl" data-type="exception" href="https://heycam.github.io/webidl/#exceptiondef-typeerror"><code>TypeError</code></a>.
+        </li>
+        <li>Perform a <a data-link-type="dfn" data-type="dfn" href="https://fetch.spec.whatwg.org/#concept-fetch">fetch</a> using <var>request</var> and return the <a data-link-type="dfn" data-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response">Response</a>.
+        </li>
+      </ol>
+      <div class="note" role="note" id="issue-container-generatedID-0"><div role="heading" class="note-title marker" id="h-note-0" aria-level="3"><span>Note</span></div><aside class="">
+        <a data-link-type="dfn" data-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-client">Client</a> is required here so the appropriate CSP can be applied.
+      </aside></div>
+    </section>
+    <section id="conformance"><h2 id="x8-conformance"><bdi class="secno">8. </bdi>Conformance<a class="self-link" aria-label="§" href="#conformance"></a></h2><p>
+      As well as sections marked as non-normative, all authoring guidelines, diagrams, examples, and notes in this specification are non-normative. Everything else in this specification is normative.
+    </p><p>
+        The key words <em class="rfc2119">MAY</em>, <em class="rfc2119">MUST</em>, and <em class="rfc2119">RECOMMENDED</em> in this document
+        are to be interpreted as described in
+        <a href="https://tools.ietf.org/html/bcp14">BCP 14</a>
+        [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">RFC2119</a></cite>] [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc8174" title="Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words">RFC8174</a></cite>]
+        when, and only when, they appear in all capitals, as shown here.
+      </p></section>
+  
+
+<section id="references" class="appendix"><h2 id="a-references"><bdi class="secno">A. </bdi>References<a class="self-link" aria-label="§" href="#references"></a></h2><section id="normative-references">
+    <h3 id="a-1-normative-references"><bdi class="secno">A.1 </bdi>Normative references<a class="self-link" aria-label="§" href="#normative-references"></a></h3>
+    <dl class="bibliography">
+      <dt id="bib-dom">[dom]</dt><dd><a href="https://dom.spec.whatwg.org/"><cite>DOM Standard</cite></a>. Anne van Kesteren.  WHATWG. Living Standard. URL: <a href="https://dom.spec.whatwg.org/">https://dom.spec.whatwg.org/</a></dd><dt id="bib-fetch">[fetch]</dt><dd><a href="https://fetch.spec.whatwg.org/"><cite>Fetch Standard</cite></a>. Anne van Kesteren.  WHATWG. Living Standard. URL: <a href="https://fetch.spec.whatwg.org/">https://fetch.spec.whatwg.org/</a></dd><dt id="bib-html">[html]</dt><dd><a href="https://html.spec.whatwg.org/multipage/"><cite>HTML Standard</cite></a>. Anne van Kesteren; Domenic Denicola; Ian Hickson; Philip Jägenstedt; Simon Pieters.  WHATWG. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a></dd><dt id="bib-infra">[infra]</dt><dd><a href="https://infra.spec.whatwg.org/"><cite>Infra Standard</cite></a>. Anne van Kesteren; Domenic Denicola.  WHATWG. Living Standard. URL: <a href="https://infra.spec.whatwg.org/">https://infra.spec.whatwg.org/</a></dd><dt id="bib-mimesniff">[mimesniff]</dt><dd><a href="https://mimesniff.spec.whatwg.org/"><cite>MIME Sniffing Standard</cite></a>. Gordon P. Hemsley.  WHATWG. Living Standard. URL: <a href="https://mimesniff.spec.whatwg.org/">https://mimesniff.spec.whatwg.org/</a></dd><dt id="bib-rfc2119">[RFC2119]</dt><dd><a href="https://tools.ietf.org/html/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. S. Bradner.  IETF. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a></dd><dt id="bib-rfc8174">[RFC8174]</dt><dd><a href="https://tools.ietf.org/html/rfc8174"><cite>Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</cite></a>. B. Leiba.  IETF. May 2017. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc8174">https://tools.ietf.org/html/rfc8174</a></dd><dt id="bib-url">[url]</dt><dd><a href="https://url.spec.whatwg.org/"><cite>URL Standard</cite></a>. Anne van Kesteren.  WHATWG. Living Standard. URL: <a href="https://url.spec.whatwg.org/">https://url.spec.whatwg.org/</a></dd><dt id="bib-webidl">[webidl]</dt><dd><a href="https://heycam.github.io/webidl/"><cite>Web IDL</cite></a>. Boris Zbarsky.  W3C. 15 December 2016. W3C Editor's Draft. URL: <a href="https://heycam.github.io/webidl/">https://heycam.github.io/webidl/</a></dd>
+    </dl>
+  </section></section><p role="navigation" id="back-to-top">
+    <a href="#title"><abbr title="Back to Top">↑</abbr></a>
+  </p><aside class="dfn-panel" hidden="" id="dfn-panel-for-dfn-image-resource">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dfn-image-resource">Permalink</a>
+        
+      </div>
+      <b>Referenced in:</b>
+      <ul>
+    <li>
+    <a href="#ref-for-dfn-image-resource-1">2. Privacy and security considerations</a> 
+  </li><li>
+    <a href="#ref-for-dfn-image-resource-2">4.3 type member</a> 
+  </li><li>
+    <a href="#ref-for-dfn-image-resource-3">5. Processing an ImageResource from an API</a> <a href="#ref-for-dfn-image-resource-4">(2)</a> 
+  </li><li>
+    <a href="#ref-for-dfn-image-resource-5">6. Processing an image resource from JSON</a> <a href="#ref-for-dfn-image-resource-6">(2)</a> 
+  </li><li>
+    <a href="#ref-for-dfn-image-resource-7">7. Fetching an image resource</a> 
+  </li>
+  </ul>
+    </aside><aside class="dfn-panel" hidden="" id="dfn-panel-for-dfn-src">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dfn-src">Permalink</a>
+        
+      </div>
+      <b>Referenced in:</b>
+      <ul>
+    <li>
+    <a href="#ref-for-dfn-src-1">5. Processing an ImageResource from an API</a> 
+  </li><li>
+    <a href="#ref-for-dfn-src-2">6. Processing an image resource from JSON</a> <a href="#ref-for-dfn-src-3">(2)</a> 
+  </li><li>
+    <a href="#ref-for-dfn-src-4">7. Fetching an image resource</a> 
+  </li>
+  </ul>
+    </aside><aside class="dfn-panel" hidden="" id="dfn-panel-for-dfn-sizes">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dfn-sizes">Permalink</a>
+        
+      </div>
+      <b>Referenced in:</b>
+      <ul>
+    <li>
+    <a href="#ref-for-dfn-sizes-1">5. Processing an ImageResource from an API</a> 
+  </li><li>
+    <a href="#ref-for-dfn-sizes-2">6. Processing an image resource from JSON</a> 
+  </li>
+  </ul>
+    </aside><aside class="dfn-panel" hidden="" id="dfn-panel-for-dfn-type">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dfn-type">Permalink</a>
+        
+      </div>
+      <b>Referenced in:</b>
+      <ul>
+    <li>
+    <a href="#ref-for-dfn-type-1">5. Processing an ImageResource from an API</a> 
+  </li><li>
+    <a href="#ref-for-dfn-type-2">6. Processing an image resource from JSON</a> 
+  </li>
+  </ul>
+    </aside><aside class="dfn-panel" hidden="" id="dfn-panel-for-dom-imageresource">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dom-imageresource">Permalink</a>
+        <span class="dfn-exported" title="Definition can be referenced by other specifications">exported</span>
+      </div>
+      <b>Referenced in:</b>
+      <ul>
+    <li>
+    <a href="#ref-for-dom-imageresource-1">Abstract</a> <a href="#ref-for-dom-imageresource-2">(2)</a> 
+  </li><li>
+    <a href="#ref-for-dom-imageresource-3">3. Image resource</a> 
+  </li><li>
+    <a href="#ref-for-dom-imageresource-4">4. ImageResource dictionary</a> 
+  </li><li>
+    <a href="#ref-for-dom-imageresource-5">4.1 src member</a> 
+  </li><li>
+    <a href="#ref-for-dom-imageresource-6">4.2 sizes member</a> <a href="#ref-for-dom-imageresource-7">(2)</a> 
+  </li><li>
+    <a href="#ref-for-dom-imageresource-8">4.3 type member</a> 
+  </li><li>
+    <a href="#ref-for-dom-imageresource-9">5. Processing an ImageResource from an API</a> 
+  </li>
+  </ul>
+    </aside><aside class="dfn-panel" hidden="" id="dfn-panel-for-dom-imageresource-src">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dom-imageresource-src">Permalink</a>
+        <span class="dfn-exported" title="Definition can be referenced by other specifications">exported</span>
+      </div>
+      <b>Referenced in:</b>
+      <ul>
+    <li>
+    <a href="#ref-for-dom-imageresource-src-1">4. ImageResource dictionary</a> 
+  </li><li>
+    <a href="#ref-for-dom-imageresource-src-2">4.1 src member</a> 
+  </li><li>
+    <a href="#ref-for-dom-imageresource-src-3">5. Processing an ImageResource from an API</a> 
+  </li>
+  </ul>
+    </aside><aside class="dfn-panel" hidden="" id="dfn-panel-for-dom-imageresource-sizes">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dom-imageresource-sizes">Permalink</a>
+        <span class="dfn-exported" title="Definition can be referenced by other specifications">exported</span>
+      </div>
+      <b>Referenced in:</b>
+      <ul>
+    <li>
+    <a href="#ref-for-dom-imageresource-sizes-1">4. ImageResource dictionary</a> 
+  </li><li>
+    <a href="#ref-for-dom-imageresource-sizes-2">4.2 sizes member</a> <a href="#ref-for-dom-imageresource-sizes-3">(2)</a> <a href="#ref-for-dom-imageresource-sizes-4">(3)</a> 
+  </li><li>
+    <a href="#ref-for-dom-imageresource-sizes-5">5. Processing an ImageResource from an API</a> <a href="#ref-for-dom-imageresource-sizes-6">(2)</a> 
+  </li><li>
+    <a href="#ref-for-dom-imageresource-sizes-7">6. Processing an image resource from JSON</a> 
+  </li>
+  </ul>
+    </aside><aside class="dfn-panel" hidden="" id="dfn-panel-for-dom-imageresource-type">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dom-imageresource-type">Permalink</a>
+        <span class="dfn-exported" title="Definition can be referenced by other specifications">exported</span>
+      </div>
+      <b>Referenced in:</b>
+      <ul>
+    <li>
+    <a href="#ref-for-dom-imageresource-type-1">4. ImageResource dictionary</a> 
+  </li><li>
+    <a href="#ref-for-dom-imageresource-type-2">4.3 type member</a> <a href="#ref-for-dom-imageresource-type-3">(2)</a> 
+  </li><li>
+    <a href="#ref-for-dom-imageresource-type-4">5. Processing an ImageResource from an API</a> <a href="#ref-for-dom-imageresource-type-5">(2)</a> <a href="#ref-for-dom-imageresource-type-6">(3)</a> 
+  </li>
+  </ul>
+    </aside><aside class="dfn-panel" hidden="" id="dfn-panel-for-dfn-process-an-imageresource-from-an-api">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dfn-process-an-imageresource-from-an-api">Permalink</a>
+        <span class="dfn-exported" title="Definition can be referenced by other specifications">exported</span>
+      </div>
+      <b>Referenced in:</b>
+      <ul>
+      <li>Not referenced in this document.</li>
+    </ul>
+    </aside><aside class="dfn-panel" hidden="" id="dfn-panel-for-dfn-process-an-image-resource-from-json">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dfn-process-an-image-resource-from-json">Permalink</a>
+        <span class="dfn-exported" title="Definition can be referenced by other specifications">exported</span>
+      </div>
+      <b>Referenced in:</b>
+      <ul>
+      <li>Not referenced in this document.</li>
+    </ul>
+    </aside><aside class="dfn-panel" hidden="" id="dfn-panel-for-dfn-fetching-an-image-resource">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dfn-fetching-an-image-resource">Permalink</a>
+        <span class="dfn-exported" title="Definition can be referenced by other specifications">exported</span>
+      </div>
+      <b>Referenced in:</b>
+      <ul>
+    <li>
+    <a href="#ref-for-dfn-fetching-an-image-resource-1">2. Privacy and security considerations</a> 
+  </li>
+  </ul>
+    </aside><script id="respec-dfn-panel">(() => {
+// @ts-check
+if (document.respecIsReady) {
+  document.respecIsReady.then(dfnPanel);
+} else {
+  dfnPanel();
+}
+
+function dfnPanel() {
+  /** @type {HTMLElement} */
+  let panel;
+  document.body.addEventListener("click", event => {
+    if (!(event.target instanceof HTMLElement)) return;
+
+    /** @type {HTMLElement} */
+    const el = event.target;
+
+    const action = deriveAction(el);
+    switch (action) {
+      case "show": {
+        if (panel) hidePanel(panel);
+        /** @type {HTMLElement} */
+        const dfn = el.closest("dfn, .index-term");
+        panel = document.getElementById(`dfn-panel-for-${dfn.id}`);
+        displayPanel(dfn, panel, { x: event.clientX, y: event.clientY });
+        break;
+      }
+      case "dock": {
+        panel.style.left = null;
+        panel.style.top = null;
+        panel.classList.add("docked");
+        break;
+      }
+      case "hide": {
+        hidePanel(panel);
+        break;
+      }
+    }
+  });
+}
+
+/** @param {HTMLElement} clickTarget */
+function deriveAction(clickTarget) {
+  const hitALink = !!clickTarget.closest("a");
+  if (clickTarget.closest("dfn, .index-term")) {
+    return hitALink ? null : "show";
+  }
+  if (clickTarget.closest(".dfn-panel")) {
+    if (hitALink) {
+      const clickedSelfLink = clickTarget.classList.contains("self-link");
+      return clickedSelfLink ? "hide" : "dock";
+    }
+    const panel = clickTarget.closest(".dfn-panel");
+    return panel.classList.contains("docked") ? "hide" : null;
+  }
+  if (document.querySelector(".dfn-panel:not([hidden])")) {
+    return "hide";
+  }
+  return null;
+}
+
+/**
+ * @param {HTMLElement} dfn
+ * @param {HTMLElement} panel
+ * @param {{ x: number, y: number }} clickPosition
+ */
+function displayPanel(dfn, panel, { x, y }) {
+  panel.hidden = false;
+  // distance (px) between edge of panel and the pointing triangle (caret)
+  const MARGIN = 20;
+
+  const dfnRects = dfn.getClientRects();
+  // Find the `top` offset when the `dfn` can be spread across multiple lines
+  let closestTop = 0;
+  let minDiff = Infinity;
+  for (const rect of dfnRects) {
+    const { top, bottom } = rect;
+    const diffFromClickY = Math.abs((top + bottom) / 2 - y);
+    if (diffFromClickY < minDiff) {
+      minDiff = diffFromClickY;
+      closestTop = top;
+    }
+  }
+
+  const top = window.scrollY + closestTop + dfnRects[0].height;
+  const left = x - MARGIN;
+  panel.style.left = `${left}px`;
+  panel.style.top = `${top}px`;
+
+  // Find if the panel is flowing out of the window
+  const panelRect = panel.getBoundingClientRect();
+  const SCREEN_WIDTH = Math.min(window.innerWidth, window.screen.width);
+  if (panelRect.right > SCREEN_WIDTH) {
+    const newLeft = Math.max(MARGIN, x + MARGIN - panelRect.width);
+    const newCaretOffset = left - newLeft;
+    panel.style.left = `${newLeft}px`;
+    /** @type {HTMLElement} */
+    const caret = panel.querySelector(".caret");
+    caret.style.left = `${newCaretOffset}px`;
+  }
+}
+
+/** @param {HTMLElement} panel */
+function hidePanel(panel) {
+  panel.hidden = true;
+  panel.classList.remove("docked");
+}
+})()</script><script src="https://www.w3.org/scripts/TR/2016/fixup.js"></script></body></html>
