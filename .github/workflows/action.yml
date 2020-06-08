@@ -18,11 +18,11 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
         with:
-          path: ~/.yarn
+          path: ~/.cache/yarn
           key: ${{ runner.os }}-yarn
       - name: Build
         run: |
-          yarn global add respec --cache-folder ~/.yarn
+          yarn global add respec --cache-folder ~/.cache/yarn
           respec2html --src index.html --out index.html
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
