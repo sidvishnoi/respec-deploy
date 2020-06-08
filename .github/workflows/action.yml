@@ -6,6 +6,10 @@ on:
       - master
   pull_request: {}
 
+env:
+  PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: 1
+  PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome
+
 jobs:
   validate-and-publish:
     name: Validate and Publish
