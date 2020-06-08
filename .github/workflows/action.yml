@@ -23,6 +23,7 @@ jobs:
       - name: Build
         run: |
           yarn global add respec --cache-folder ~/.cache/yarn
+          export PATH="$(yarn global bin):$PATH"
           respec2html --src index.html --out index.html
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
