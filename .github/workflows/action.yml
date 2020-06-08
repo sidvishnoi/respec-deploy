@@ -11,4 +11,6 @@ jobs:
     name: Validate and Publish
     runs-on: ubuntu-latest # only linux supported at present
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
+      - name: Build
+        run: npx -p respec respec2html --src index.html --out index.html
