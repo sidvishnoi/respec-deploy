@@ -11,8 +11,8 @@ env:
   PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome
 
 jobs:
-  validate-and-publish:
-    name: Validate and Publish
+  build-and-deploy:
+    name: Build and Deploy
     runs-on: ubuntu-latest # only linux supported at present
     steps:
       - uses: actions/checkout@v2
